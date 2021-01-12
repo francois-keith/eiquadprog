@@ -61,6 +61,7 @@ namespace eiquadprog {
 
 namespace solvers {
 
+#include "eiquadprog/config.hpp"
 #include "eiquadprog/eiquadprog-utils.hxx"
 
 /**
@@ -74,7 +75,7 @@ enum EiquadprogFast_status {
   EIQUADPROG_FAST_REDUNDANT_EQUALITIES = 4
 };
 
-class EiquadprogFast {
+class EIQUADPROG_DLLAPI EiquadprogFast {
   typedef Eigen::MatrixXd MatrixXd;
   typedef Eigen::VectorXd VectorXd;
   typedef Eigen::VectorXi VectorXi;

@@ -82,6 +82,7 @@
 
 #include <iostream>
 
+#include "eiquadprog/config.hpp"
 #include "eiquadprog/eiquadprog-utils.hxx"
 
 // namespace internal {
@@ -100,18 +101,18 @@ inline void update_r(const Eigen::MatrixXd& R, Eigen::VectorXd& r, const Eigen::
   r.head(iq) = R.topLeftCorner(iq, iq).triangularView<Eigen::Upper>().solve(d.head(iq));
 }
 
-bool add_constraint(Eigen::MatrixXd& R, Eigen::MatrixXd& J, Eigen::VectorXd& d, size_t& iq, double& R_norm);
-void delete_constraint(Eigen::MatrixXd& R, Eigen::MatrixXd& J, Eigen::VectorXi& A, Eigen::VectorXd& u, size_t p,
+EIQUADPROG_DLLAPI bool add_constraint(Eigen::MatrixXd& R, Eigen::MatrixXd& J, Eigen::VectorXd& d, size_t& iq, double& R_norm);
+EIQUADPROG_DLLAPI void delete_constraint(Eigen::MatrixXd& R, Eigen::MatrixXd& J, Eigen::VectorXi& A, Eigen::VectorXd& u, size_t p,
                        size_t& iq, size_t l);
 
 /* solve_quadprog2 is used when the Cholesky decomposition of the G
    matrix is precomputed */
-double solve_quadprog2(Eigen::LLT<Eigen::MatrixXd, Eigen::Lower>& chol, double c1, Eigen::VectorXd& g0,
+EIQUADPROG_DLLAPI double solve_quadprog2(Eigen::LLT<Eigen::MatrixXd, Eigen::Lower>& chol, double c1, Eigen::VectorXd& g0,
                        const Eigen::MatrixXd& CE, const Eigen::VectorXd& ce0, const Eigen::MatrixXd& CI,
                        const Eigen::VectorXd& ci0, Eigen::VectorXd& x, Eigen::VectorXi& A, size_t& q);
 
 /* solve_quadprog is used for on-demand QP solving */
-double solve_quadprog(Eigen::MatrixXd& G, Eigen::VectorXd& g0, const Eigen::MatrixXd& CE, const Eigen::VectorXd& ce0,
+EIQUADPROG_DLLAPI double solve_quadprog(Eigen::MatrixXd& G, Eigen::VectorXd& g0, const Eigen::MatrixXd& CE, const Eigen::VectorXd& ce0,
                       const Eigen::MatrixXd& CI, const Eigen::VectorXd& ci0, Eigen::VectorXd& x,
                       Eigen::VectorXi& activeSet, size_t& activeSetSize);
 // }
