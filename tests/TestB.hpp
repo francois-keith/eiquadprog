@@ -6,7 +6,13 @@
 namespace eiquadprog {
 namespace tests {
 
-class B {
+#if defined _WIN32
+#  define TESTAB_DLLAPI __declspec(dllexport)
+#else
+#  define TESTAB_DLLAPI
+#endif
+
+class TESTAB_DLLAPI B {
  protected:
   Eigen::VectorXd solution_;
 

@@ -7,7 +7,13 @@
 namespace eiquadprog {
 namespace tests {
 
-class A {
+#if defined _WIN32
+#  define TESTAB_DLLAPI __declspec(dllexport)
+#else
+#  define TESTAB_DLLAPI
+#endif
+
+class TESTAB_DLLAPI A {
  protected:
   eiquadprog::solvers::EiquadprogFast_status expected_;
   Eigen::MatrixXd Q_;
